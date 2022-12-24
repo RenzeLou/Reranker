@@ -1,0 +1,59 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {   "cwd": "/home/tuq59834/code/project/Tk-ins/Reranker/data",
+            "name": "Python: generate data",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "--nb_pos", "100",
+                "--nb_neg", "100",
+            ]
+        },
+        {   "cwd": "/home/tuq59834/code/project/Tk-ins/Reranker",
+            "name": "Python: debug test",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"5",
+                    "CUDA_LAUNCH_BLOCKING":"1"}, 
+            "justMyCode": false,
+            "args": [
+                "--do_predic",
+                "--model_name_or_path", "/home/tuq59834/code/project/Tk-ins/Reranker/out/bert-large-cased",
+                "--train_file", "./data/train.csv",
+                "--test_file", "./data/test.csv",
+                "--validation_file", "./data/dev.csv",
+                "--max_seq_length","1024",
+                "--per_device_eval_batch_size","1",
+                "--per_device_train_batch_size","1",
+                "--cache_dir", "./cache/",
+                "--output_dir", "./out/bert-large-cased"
+            ]
+        },
+        {   "cwd": "/home/tuq59834/code/project/Tk-ins/Reranker/",
+            "name": "Python: run retrieval",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "--gpu", "6",
+            ]
+        },
+    ]
+}
